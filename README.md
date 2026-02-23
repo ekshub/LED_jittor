@@ -34,6 +34,12 @@
 
 > 精度差异 < 0.001 dB，达到工业级一致性
 
+**测试日志**：
+- 📋 [PyTorch推理日志](docs/results/logs/pytorch_test.log)（2026-02-05，598张，19分15秒）
+- 📋 [Jittor推理日志](docs/results/logs/jittor_test.log)（2026-02-05，598张，21分34秒）
+- 📊 [完整对比报告](docs/results/comparison_report.md)（含像素级分析）
+- 📈 [结构化对比数据](docs/results/comparison_results_real.json)（JSON格式）
+
 ### 3. 性能优化
 | 优化项 | 基线速度 | 优化后速度 | 提升 |
 |--------|---------|-----------|------|
@@ -407,6 +413,15 @@ for data in dataloader:
 - **Jittor框架**: [Jittor GitHub](https://github.com/Jittor/jittor)
 - **论文链接**: [ICCV 2023 Paper](https://openaccess.thecvf.com/content/ICCV2023/papers/Fu_Lighting_Every_Darkness_in_Two_Pairs_A_Calibration-Free_Pipeline_for_ICCV_2023_paper.pdf)
 - **项目主页**: https://github.com/ekshub/LED_jittor
+
+### 📂 测试结果与日志
+
+| 文件 | 说明 |
+|------|------|
+| [pytorch_test.log](docs/results/logs/pytorch_test.log) | PyTorch完整推理日志（PSNR=38.6894, SSIM=0.9361）|
+| [jittor_test.log](docs/results/logs/jittor_test.log) | Jittor完整推理日志（PSNR=38.6893, SSIM=0.9361）|
+| [comparison_report.md](docs/results/comparison_report.md) | PyTorch vs Jittor详细对比报告 |
+| [comparison_results_real.json](docs/results/comparison_results_real.json) | 结构化对比数据（含像素级分析）|
 
 ---
 
