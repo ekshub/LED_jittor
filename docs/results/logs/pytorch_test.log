@@ -1,0 +1,115 @@
+2026-02-05 23:11:54,191 INFO: 
+     ______                   __   __                 __      __
+    / ____/____   ____   ____/ /  / /   __  __ _____ / /__   / /
+   / / __ / __ \ / __ \ / __  /  / /   / / / // ___// //_/  / /
+  / /_/ // /_/ // /_/ // /_/ /  / /___/ /_/ // /__ / /<    /_/
+  \____/ \____/ \____/ \____/  /_____/\____/ \___//_/|_|  (_)
+    
+Version Information: 
+	LED: 0.1.1
+	PyTorch: 1.13.1+cu117
+	TorchVision: 0.14.1+cu117
+2026-02-05 23:11:54,191 INFO: 
+  name: LED_SID_Sony_Test_PyTorch
+  model_type: RAWImageDenoisingModel
+  scale: 1
+  num_gpu: 1
+  manual_seed: 2022
+  datasets:[
+    test:[
+      name: SID_Sony_Test
+      type: PairedRAWDataset
+      dataroot: /mnt/g/RAW
+      data_pair_list: /mnt/g/RAW/Sony_test_list.txt
+      zero_clip: False
+      crop_size: None
+      load_in_mem: False
+      num_worker_per_gpu: 0
+      batch_size_per_gpu: 1
+      prefetch_mode: None
+      phase: test
+      scale: 1
+    ]
+  ]
+  network_g:[
+    type: UNetArch
+    inchannels: 4
+    outchannels: 4
+    channels: 32
+  ]
+  path:[
+    pretrain_network_g: pretrained/network_g/LED_Deploy_SID_SonyA7S2_CVPR20_Setting_Ratio100-300.pth
+    param_key_g: params_deploy
+    strict_load_g: False
+    log: /mnt/g/RAW/ICCV23-LED/results/LED_SID_Sony_Test_PyTorch
+    visualization: /mnt/g/RAW/ICCV23-LED/results/LED_SID_Sony_Test_PyTorch/visualization
+    results_root: /mnt/g/RAW/ICCV23-LED/results/LED_SID_Sony_Test_PyTorch
+  ]
+  val:[
+    save_img: True
+    suffix: None
+    pbar: True
+    metrics:[
+      psnr:[
+        type: calculate_psnr
+        crop_border: 0
+        test_y_channel: False
+      ]
+      ssim:[
+        type: calculate_ssim
+        crop_border: 0
+        test_y_channel: False
+      ]
+    ]
+  ]
+  logger:[
+    print_freq: 10
+    save_checkpoint_freq: 5000
+    use_tb_logger: False
+  ]
+  dist: False
+  is_train: False
+  rank: 0
+  world_size: 1
+  auto_resume: False
+
+2026-02-05 23:11:54,196 INFO: Dataset [PairedRAWDataset] - SID_Sony_Test is built.
+2026-02-05 23:11:54,197 INFO: Number of test images in SID_Sony_Test: 598
+2026-02-05 23:11:54,235 INFO: Network [UNetArch] is created.
+2026-02-05 23:11:55,289 INFO: Network: UNetArch, with parameters: 7,760,484
+2026-02-05 23:11:55,289 INFO: UNetArch(
+  (conv1_1): Conv2d(4, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (conv1_2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (pool1): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  (conv2_1): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (conv2_2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (pool2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  (conv3_1): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (conv3_2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (pool3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  (conv4_1): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (conv4_2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (pool4): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  (conv5_1): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (conv5_2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (upv6): ConvTranspose2d(512, 256, kernel_size=(2, 2), stride=(2, 2))
+  (conv6_1): Conv2d(512, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (conv6_2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (upv7): ConvTranspose2d(256, 128, kernel_size=(2, 2), stride=(2, 2))
+  (conv7_1): Conv2d(256, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (conv7_2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (upv8): ConvTranspose2d(128, 64, kernel_size=(2, 2), stride=(2, 2))
+  (conv8_1): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (conv8_2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (upv9): ConvTranspose2d(64, 32, kernel_size=(2, 2), stride=(2, 2))
+  (conv9_1): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (conv9_2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (conv10_1): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1))
+)
+2026-02-05 23:11:55,807 INFO: Loading UNetArch model from pretrained/network_g/LED_Deploy_SID_SonyA7S2_CVPR20_Setting_Ratio100-300.pth, with param key: [params_deploy].
+2026-02-05 23:11:55,843 INFO: Model [RAWImageDenoisingModel] is created.
+2026-02-05 23:11:55,844 INFO: Testing SID_Sony_Test...
+2026-02-05 23:31:10,353 INFO: Validation SID_Sony_Test
+	 # psnr: 38.6894	Best: 38.6894 @ LED_SID_Sony_Test_PyTorch iter
+	 # ssim: 0.9361	Best: 0.9361 @ LED_SID_Sony_Test_PyTorch iter
+

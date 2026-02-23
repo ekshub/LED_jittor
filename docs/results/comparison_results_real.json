@@ -1,0 +1,83 @@
+{
+  "test_info": {
+    "dataset": "SID Sony A7S2 Test Set",
+    "num_images": 598,
+    "weight_file": "LED_Deploy_SID_SonyA7S2_CVPR20_Setting_Ratio100-300.pth",
+    "param_key": "params_deploy",
+    "test_date": "2026-02-05"
+  },
+  "frameworks": {
+    "pytorch": {
+      "version": "1.13.1+cu117",
+      "log_file": "test_LED_SID_Sony_Test_PyTorch_20260205_231154.log",
+      "test_start": "2026-02-05 23:11:55",
+      "test_end": "2026-02-05 23:31:10",
+      "elapsed_seconds": 1155,
+      "speed_per_image": 1.93
+    },
+    "jittor": {
+      "version": "1.3.10.0",
+      "log_file": "test_LED_SID_Sony_Test_Jittor_20260205_212236.log",
+      "test_start": "2026-02-05 21:22:37",
+      "test_end": "2026-02-05 21:44:11",
+      "elapsed_seconds": 1294,
+      "speed_per_image": 2.16
+    }
+  },
+  "quality_metrics_vs_gt": {
+    "pytorch": {
+      "psnr_db": 38.6894,
+      "ssim": 0.9361
+    },
+    "jittor": {
+      "psnr_db": 38.6893,
+      "ssim": 0.9361
+    },
+    "difference": {
+      "psnr_db": -0.0001,
+      "ssim": 0.0000
+    }
+  },
+  "pixel_level_comparison": {
+    "description": "Pixel-level comparison between PyTorch and Jittor outputs (not vs GT)",
+    "samples": [
+      {
+        "image": "10003_00_0.1s",
+        "image_shape": [1424, 2128, 3],
+        "max_difference": 1,
+        "mean_difference": 0.001393,
+        "different_pixels": 12666,
+        "total_pixels": 9090816,
+        "different_pixel_ratio": 0.0014,
+        "pixel_psnr_db": 76.69
+      },
+      {
+        "image": "10003_01_0.1s",
+        "image_shape": [1424, 2128, 3],
+        "max_difference": 1,
+        "mean_difference": 0.001378,
+        "different_pixels": 12526,
+        "total_pixels": 9090816,
+        "different_pixel_ratio": 0.0014,
+        "pixel_psnr_db": 76.74
+      },
+      {
+        "image": "10006_00_0.1s",
+        "image_shape": [1424, 2128, 3],
+        "max_difference": 1,
+        "mean_difference": 0.000866,
+        "different_pixels": 7876,
+        "total_pixels": 9090816,
+        "different_pixel_ratio": 0.0009,
+        "pixel_psnr_db": 78.75
+      }
+    ],
+    "summary": {
+      "max_pixel_diff_across_samples": 1,
+      "avg_different_pixel_ratio": "0.09%~0.14%",
+      "avg_pixel_psnr_db": 77.39,
+      "conclusion": "Outputs are numerically equivalent. Differences originate from floating-point rounding between CUDA and Jittor JIT compilation."
+    }
+  },
+  "conclusion": "Migration successful. PSNR difference < 0.001 dB, SSIM identical, pixel-level outputs equivalent."
+}
